@@ -1,10 +1,12 @@
-package com.kursatkumsuz.movie.presentation.splash
+package com.kursatkumsuz.movie.presentation.screens.splash
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kursatkumsuz.movie.domain.usecase.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,11 +22,9 @@ class SplashViewModel @Inject constructor(
         getOnBoardingState()
     }
 
-    private fun getOnBoardingState() {
-        viewModelScope.launch {
-            useCases.readOnBoardingStateUseCase.invoke().collect {
-                _onBoardingState.value = it
-            }
+    fun getOnBoardingState() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _onBoardingState.value = useCases.readOnBoardingStateUseCase().stateIn(viewModelScope).value
         }
     }
 }

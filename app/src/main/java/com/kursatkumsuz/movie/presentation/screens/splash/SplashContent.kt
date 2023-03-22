@@ -1,4 +1,4 @@
-package com.kursatkumsuz.movie.presentation.splash
+package com.kursatkumsuz.movie.presentation.screens.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

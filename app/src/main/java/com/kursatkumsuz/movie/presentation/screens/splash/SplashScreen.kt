@@ -1,4 +1,4 @@
-package com.kursatkumsuz.movie.presentation.splash
+package com.kursatkumsuz.movie.presentation.screens.splash
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,13 +8,15 @@ import com.kursatkumsuz.movie.util.Screen
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavController) {
+fun SplashScreen(
+    navController: NavController
+) {
 
     val viewModel: SplashViewModel = hiltViewModel()
     val onBoardingState = viewModel.onBoardingState.value
     SplashContent()
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(key1 = onBoardingState) {
         delay(1000)
         if (onBoardingState) {
             navController.navigate(Screen.AuthenticationScreen.route)
