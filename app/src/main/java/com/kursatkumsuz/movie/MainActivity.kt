@@ -7,7 +7,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.kursatkumsuz.movie.presentation.navigation.NavGraph
+import com.kursatkumsuz.movie.presentation.screens.navigation.NavGraph
 import com.kursatkumsuz.movie.ui.theme.MovieTheme
 import dagger.hilt.android.AndroidEntryPoint
 

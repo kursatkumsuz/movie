@@ -1,4 +1,4 @@
-package com.kursatkumsuz.movie.presentation.onboarding
+package com.kursatkumsuz.movie.presentation.screens.onboarding
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Spring
