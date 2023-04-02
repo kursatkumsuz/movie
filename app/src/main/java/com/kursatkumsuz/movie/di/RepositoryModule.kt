@@ -1,11 +1,11 @@
 package com.kursatkumsuz.movie.di
 
 import android.content.Context
+import com.google.firebase.auth.FirebaseAuth
+import com.kursatkumsuz.movie.data.repository.AuthenticationRepositoryImpl
 import com.kursatkumsuz.movie.data.repository.DataStoreRepositoryImpl
+import com.kursatkumsuz.movie.domain.repository.AuthenticationRepository
 import com.kursatkumsuz.movie.domain.repository.DataStoreRepository
-import com.kursatkumsuz.movie.domain.usecase.UseCases
-import com.kursatkumsuz.movie.domain.usecase.datastore.ReadOnBoardingStateUseCase
-import com.kursatkumsuz.movie.domain.usecase.datastore.SaveOnBoardingStateUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,12 +23,10 @@ object RepositoryModule {
         return DataStoreRepositoryImpl(context = context)
     }
 
-    @Singleton
     @Provides
-    fun provideUseCases(dataStoreRepository: DataStoreRepository): UseCases {
-        return UseCases(
-            saveOnBoardingStateUseCase = SaveOnBoardingStateUseCase(dataStoreRepository),
-            readOnBoardingStateUseCase = ReadOnBoardingStateUseCase(dataStoreRepository)
-        )
+    @Singleton
+    fun provideAuthenticationRepository(firebaseAuth: FirebaseAuth): AuthenticationRepository {
+        return AuthenticationRepositoryImpl(firebaseAuth = firebaseAuth)
     }
+
 }

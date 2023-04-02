@@ -7,7 +7,6 @@ fun AuthenticationScreen(
     onNavigateSignInClick: () -> Unit,
     onSignInWithGoogle: () -> Unit
 ) {
-
     AuthenticationContent(
         onNavigateSignInClick = onNavigateSignInClick,
         onSignInWithGoogle = onSignInWithGoogle

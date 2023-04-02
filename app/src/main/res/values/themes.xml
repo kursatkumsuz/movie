@@ -2,4 +2,5 @@
 <resources>
 
     <style name="Theme.Movie" parent="android:Theme.Material.Light.NoActionBar" />
+
 </resources>

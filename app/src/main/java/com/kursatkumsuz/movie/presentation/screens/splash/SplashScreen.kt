@@ -13,12 +13,15 @@ fun SplashScreen(
 ) {
 
     val viewModel: SplashViewModel = hiltViewModel()
-    val onBoardingState = viewModel.onBoardingState.value
+    val onBoardingState = viewModel.onBoardingState
+    val signedInState = viewModel.onBoardingState
     SplashContent()
 
     LaunchedEffect(key1 = onBoardingState) {
         delay(1000)
-        if (onBoardingState) {
+        if (onBoardingState && signedInState) {
+            navController.navigate(Screen.HomeScreen.route)
+        } else if (onBoardingState) {
             navController.navigate(Screen.AuthenticationScreen.route)
         } else {
             navController.navigate(Screen.OnBoardingScreen.route)

@@ -30,6 +30,7 @@ fun NavGraph(navController: NavHostController) {
         authenticationScreen(navController = navController)
         signInScreen(navController = navController)
         signUpScreen(navController = navController)
+        homeScreen(navController = navController)
     }
 }
 
@@ -76,8 +77,8 @@ fun NavGraphBuilder.authenticationScreen(navController: NavController) {
 fun NavGraphBuilder.signInScreen(navController: NavController) {
     composable(Screen.SignInScreen.route) {
         SignInScreen(
-            onSignInClick = {},
-            onNavigateSignUpClick = { navController.navigate(Screen.SignUpScreen.route) },
+            onNavigateSignUp = { navController.navigate(Screen.SignUpScreen.route) },
+            onNavigateHome = { navController.navigate(Screen.HomeScreen.route) },
             onNavigateForgotPassword = {}
         )
     }
@@ -85,10 +86,18 @@ fun NavGraphBuilder.signInScreen(navController: NavController) {
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.signUpScreen(navController: NavController) {
+
     composable(Screen.SignUpScreen.route) {
         SignUpScreen(
-            onSignUpClick = {},
-            onNavigateSignInClick = { navController.navigate(Screen.SignInScreen.route) }
+            onNavigateSignIn = { navController.navigate(Screen.SignInScreen.route) }
         )
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+fun NavGraphBuilder.homeScreen(navController: NavController) {
+
+    composable(Screen.HomeScreen.route) {
+
     }
 }

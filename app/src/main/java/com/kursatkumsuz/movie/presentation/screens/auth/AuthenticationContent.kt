@@ -30,7 +30,7 @@ fun AuthenticationContent(
         Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 30.dp)
+                .padding(bottom = 60.dp)
         ) {
             Button(
                 modifier = Modifier
