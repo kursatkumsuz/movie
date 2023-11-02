@@ -21,11 +21,17 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        buildConfigField "String", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
+
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -53,6 +59,7 @@ dependencies {
     def lifecycle_version = "2.4.0"
     def nav_version = "0.29.2-rc"
     def accompanist_version = "0.24.2-alpha"
+    def paging_version = "3.1.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
@@ -97,6 +104,16 @@ dependencies {
     // Animated Message Bar
     implementation 'com.github.kursatkumsuz:animated-message-bar:1.0.0'
 
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Paging 3
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha20'
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
 }
 
