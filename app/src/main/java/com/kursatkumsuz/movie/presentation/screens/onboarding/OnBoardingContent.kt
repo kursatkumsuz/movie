@@ -19,14 +19,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.kursatkumsuz.movie.util.OnBoardingPage
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OnBoardingContent(onBoardingPage: OnBoardingPage) {
-
+fun OnBoardingContent(onBoardingPage: OnBoardingPage, pageOffset: Float) {
+    val screenWidth = LocalConfiguration.current.screenWidthDp / 2
     val contentHeight = (LocalConfiguration.current.screenHeightDp / 3 * 2.1).dp
     val gradient = Brush.verticalGradient(
         colors = listOf(
@@ -37,50 +39,61 @@ fun OnBoardingContent(onBoardingPage: OnBoardingPage) {
             Color(0xFF000000)
         )
     )
-
-    Column(
-        modifier = Modifier
-            .height(contentHeight)
-            .background(Color.Black)
-    ) {
-        Box(
+    Card {
+        Column(
             modifier = Modifier
-                .fillMaxSize()
+                .height(contentHeight)
+                .background(Color.Black)
         ) {
-            Image(
-                modifier = Modifier
-                    .fillMaxSize(),
-                painter = painterResource(id = onBoardingPage.image),
-                contentDescription = "OnBoarding Image",
-                contentScale = ContentScale.Crop
-            )
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(brush = gradient)
-            )
-            Column(modifier = Modifier.align(Alignment.BottomStart).padding(horizontal = 20.dp, vertical = 20.dp)) {
-                Text(
-                    text = onBoardingPage.title,
-                    color = Color.White,
-                    fontSize = MaterialTheme.typography.headlineMedium.fontSize,
-                    fontWeight = FontWeight.SemiBold
+            ) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .offset {
+                            IntOffset(
+                                x = (screenWidth.dp * pageOffset).roundToPx(),
+                                y = 0,
+                            )
+                        },
+                    painter = painterResource(id = onBoardingPage.image),
+                    contentDescription = "OnBoarding Image",
+                    contentScale = ContentScale.Crop
                 )
-                Text(
-                    modifier = Modifier.width(250.dp),
-                    text = onBoardingPage.description,
-                    color = Color.LightGray
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(brush = gradient)
                 )
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(horizontal = 20.dp, vertical = 20.dp)
+                ) {
+                    Text(
+                        text = onBoardingPage.title,
+                        color = Color.White,
+                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Text(
+                        modifier = Modifier.width(250.dp),
+                        text = onBoardingPage.description,
+                        color = Color.LightGray
+                    )
+                }
             }
+            Spacer(modifier = Modifier.height(40.dp))
         }
-        Spacer(modifier = Modifier.height(40.dp))
     }
 }
 
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun StartButton(pagerState: PagerState, onStartClick : () -> Unit) {
+fun StartButton(pagerState: PagerState, onStartClick: () -> Unit) {
     AnimatedVisibility(
         visible = pagerState.currentPage == 2,
         enter = expandVertically(

@@ -38,7 +38,12 @@ fun OnBoardingScreen(
             count = pages.size,
             verticalAlignment = Alignment.Top
         ) { position ->
-            OnBoardingContent(onBoardingPage = pages[position])
+            val pageOffset = (pagerState.currentPage - position) + pagerState.currentPageOffset
+
+            OnBoardingContent(
+                onBoardingPage = pages[position],
+                pageOffset = pageOffset
+            )
         }
         Spacer(modifier = Modifier.height(50.dp))
         HorizontalPagerIndicator(
@@ -47,7 +52,7 @@ fun OnBoardingScreen(
             activeColor = Color.White
         )
         Spacer(modifier = Modifier.height(20.dp))
-        StartButton( pagerState = pagerState, onStartClick = onStartClick)
+        StartButton(pagerState = pagerState, onStartClick = onStartClick)
     }
 }
 
