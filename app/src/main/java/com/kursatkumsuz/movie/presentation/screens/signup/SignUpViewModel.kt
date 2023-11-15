@@ -36,9 +36,11 @@ class SignUpViewModel @Inject constructor(
                         onSuccess()
                         setLoading(isLoading = false)
                     }
+
                     is Response.Loading -> {
                         setLoading(isLoading = true)
                     }
+
                     is Response.Error -> {
                         onError(result.errorMessage)
                         setLoading(isLoading = false)
@@ -47,5 +49,21 @@ class SignUpViewModel @Inject constructor(
             }
             .launchIn(viewModelScope)
     }
+
+    fun saveUser(
+        name: String,
+        email: String,
+        onError: (String) -> Unit
+    ) {
+        useCase.saveUserUseCase.invoke(name = name, email = email).onEach { response ->
+            when (response) {
+                is Response.Error -> {
+                    onError(response.errorMessage)
+                }
+                else -> {}
+            }
+        }.launchIn(viewModelScope)
+    }
 }
+
 

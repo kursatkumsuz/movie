@@ -32,6 +32,7 @@ fun SignUpScreen(
     val viewModel: SignUpViewModel = hiltViewModel()
 
     var emailState by remember { mutableStateOf("") }
+    var nameState by remember { mutableStateOf("") }
     var passwordState by remember { mutableStateOf("") }
     val loadingState = viewModel.loadingState
     val barState = rememberAnimatedBarState()
@@ -56,6 +57,12 @@ fun SignUpScreen(
                 color = Color.Gray
             )
             Spacer(modifier = Modifier.height(80.dp))
+
+            AuthInputText(labelText = "Name", onInput = { name ->
+                nameState = name
+            })
+
+            Spacer(modifier = Modifier.height(20.dp))
 
             AuthInputText(labelText = "E-mail", onInput = { mail ->
                 emailState = mail
@@ -87,6 +94,15 @@ fun SignUpScreen(
                             barState.AnimatedMessageBar(message = msg, BarType.ERROR)
                         }
                     )
+                    viewModel.saveUser(
+                        name = nameState,
+                        email = emailState,
+                        onError = { msg ->
+                            barState.AnimatedMessageBar(
+                                message = msg,
+                                BarType.ERROR
+                            )
+                        })
                 }
             ) {
                 Text(text = "Sign Up", color = Color.White)
