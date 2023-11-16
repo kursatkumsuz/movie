@@ -18,75 +18,112 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.kursatkumsuz.movie.util.BottomNavItem
+import com.kursatkumsuz.movie.util.Screen
 
 
 @ExperimentalAnimationApi
 @Composable
 fun BottomNavigationBar(
-    items: List<BottomNavItem>,
-    navController: NavController,
-    modifier: Modifier = Modifier,
-    onItemClick: (BottomNavItem) -> Unit
+    onItemClick: (String) -> Unit
 ) {
-    val backStackEntry = navController.currentBackStackEntryAsState()
-
+    var selectedIndex by rememberSaveable {
+        mutableStateOf(0)
+    }
+    val items = listOf(
+        BottomNavItem(
+            "Home",
+            Screen.HomeScreen.route,
+            Icons.Default.Home
+        ),
+        BottomNavItem(
+            "Watchlist",
+            Screen.WatchListScreen.route,
+            Icons.Default.List
+        ),
+        BottomNavItem(
+            "Search",
+            Screen.SearchScreen.route,
+            Icons.Default.Search
+        ),
+        BottomNavItem(
+            "Profile",
+            Screen.ProfileScreen.route,
+            Icons.Default.Person
+        )
+    )
     BottomNavigation(
-        modifier = modifier,
         backgroundColor = Color(0xFF1B1819),
         elevation = 10.dp
     ) {
-        items.forEach { item ->
-            val selected = item.route == backStackEntry.value?.destination?.route
-            BottomNavigationItem(
-                selected = selected,
-                selectedContentColor = Color.White,
-                unselectedContentColor = Color.Gray,
-                onClick = { onItemClick(item) },
-                icon = {
-                    AnimatedVisibility(
-                        visible = selected,
-                        enter = fadeIn() + scaleIn(
-                            animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioLowBouncy,
-                                stiffness = Spring.StiffnessLow
-                            )
-                        )
-                    ) {
-                        Box(
-                            modifier = modifier
-                                .clip(CircleShape)
-                                .background(Color(0xFF7C5ECF)),
-                        ) {
-                            Row(
-                                modifier = Modifier.padding(vertical = 5.dp, horizontal = 10.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.Center
-                            ) {
-                                Icon(
-                                    imageVector = item.icon,
-                                    contentDescription = item.name,
+        items.forEachIndexed { index, item ->
+            key(item.name) {
+                val selected = selectedIndex == index
+                BottomNavigationItem(
+                    selected = selected,
+                    selectedContentColor = Color.White,
+                    unselectedContentColor = Color.Gray,
+                    onClick = {
+                        selectedIndex = index
+                        onItemClick(item.route)
+                    },
+                    icon = {
+                        AnimatedVisibility(
+                            visible = selected,
+                            enter = fadeIn() + scaleIn(
+                                animationSpec = spring(
+                                    dampingRatio = Spring.DampingRatioLowBouncy,
+                                    stiffness = Spring.StiffnessLow
                                 )
-                                Divider(modifier = Modifier.width(5.dp))
-                                Text(text = item.name, fontSize = 12.sp)
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .clip(CircleShape)
+                                    .background(Color(0xFF7C5ECF)),
+                            ) {
+                                Row(
+                                    modifier = Modifier.padding(
+                                        vertical = 5.dp,
+                                        horizontal = 10.dp
+                                    ),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    Icon(
+                                        imageVector = item.icon,
+                                        contentDescription = item.name,
+                                    )
+                                    Divider(modifier = Modifier.width(5.dp))
+                                    Text(text = item.name, fontSize = 12.sp)
+                                }
                             }
                         }
-                    }
-                    AnimatedVisibility(
-                        visible = !selected,
-                    ) {
-                        Icon(imageVector = item.icon, contentDescription = item.name)
-                    }
-                })
+                        AnimatedVisibility(
+                            visible = !selected,
+                        ) {
+                            Icon(imageVector = item.icon, contentDescription = item.name)
+                        }
+                    })
+            }
         }
     }
 }
+
+
