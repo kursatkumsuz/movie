@@ -8,6 +8,8 @@ import com.kursatkumsuz.movie.domain.model.watchlist.WatchListMovie
 import com.kursatkumsuz.movie.domain.usecase.UseCases
 import com.kursatkumsuz.movie.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,26 +26,31 @@ class WatchListViewModel @Inject constructor(
     }
 
     private fun loadWatchlist() {
-        viewModelScope.launch {
-            useCases.getWatchlistUseCase.invoke().collect { response ->
-                when (response) {
-                    is Response.Success -> {
-                        response.data?.toObjects(WatchListMovie::class.java)?.let { list ->
-                            state.value = WatchListUIState(movie = list)
-                        }
-                    }
-
-                    is Response.Loading -> {
-                        state.value = WatchListUIState(loading = true)
-                    }
-
-                    is Response.Error -> {
-                        state.value = WatchListUIState(error = response.errorMessage)
+        useCases.getWatchlistUseCase.invoke().onEach { response ->
+            when (response) {
+                is Response.Success -> {
+                    response.data?.toObjects(WatchListMovie::class.java)?.let { list ->
+                        state.value = WatchListUIState(movie = list)
                     }
                 }
-            }
-        }
 
+                is Response.Loading -> {
+                    state.value = WatchListUIState(loading = true)
+                }
+
+                is Response.Error -> {
+                    state.value = WatchListUIState(error = response.errorMessage)
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+
+    fun deleteWatchList(movieId: String) {
+        viewModelScope.launch {
+            useCases.deleteWatchListUseCase.invoke(movieId)
+            loadWatchlist()
+        }
     }
 
 }
