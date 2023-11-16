@@ -24,19 +24,19 @@
 
  <pre>
  
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/79c28e30-f17e-48da-b794-2b286fb909f2" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/ece2c16f-0c5e-4dca-847b-fe30084e2aa6" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/a2d1b54d-23b9-455e-83f7-b1490ab85752" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/4404c786-a708-442b-8df6-5df012d0e8a7" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/357f1688-33ef-4758-9d36-34e4f8f4a36b" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/29266653-c0b4-4699-b2f6-c4430bb08a7c" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/ab8d4508-01c3-496f-a058-662aad317449" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/da3a2922-2781-48eb-8a58-885e17f44b20" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/9b1b57c1-f2b1-4c39-bff2-e31d2fd152db" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/c334e1d0-dd2d-477c-84dc-ce5edb95e36a" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/15c02e1f-c72a-41e5-910f-f185e0b53516" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/6eba0b4e-cd8a-477c-afbf-4e9eb614c219" width="20%">
-  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/4cf8c153-2502-41a5-b4f3-af72c06f0a59" width="20%">
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/c4ce2efe-392d-48d8-9336-2648edc645f0" width="20%">
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/2bd73cde-62fe-460f-9da0-a3b82bb78929" width="20%">
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/b46cca59-561e-439b-be14-b9fe9b6c26d7" width="20%">
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/74e4d7e2-3a61-4cc0-925f-4c19405650c2" width="20%">
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/362fcde3-a4fb-44fe-a4c7-489cb706a521" width="20%">
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/08993cd1-22ce-4111-80eb-b516516337cc" width="20%">
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/b6b6cb6a-29f9-4f35-92a8-52879bfc584a" width="20%">    
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/da3a2922-2781-48eb-8a58-885e17f44b20" width="20%">    
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/66111c45-f662-4879-92d8-467c14ec6005" width="20%">   
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/8071de07-3456-4840-8e3f-4e2d2ade8497" width="20%">  
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/c02bee71-e18f-4fde-b641-4ac5416ae180" width="20%">  
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/d345ba28-bd24-4a3e-9ee5-61e4e0a447ba" width="20%">     
+  <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/25a9f2ad-603f-4e6e-9d40-bdf60977d34a" width="20%">
 
 
 
@@ -45,4 +45,10 @@
 
 
 
-  
+
+
+
+
+
+
+
