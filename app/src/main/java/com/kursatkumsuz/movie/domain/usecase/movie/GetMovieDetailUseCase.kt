@@ -5,10 +5,9 @@ import com.kursatkumsuz.movie.domain.repository.movie.MovieRepository
 import com.kursatkumsuz.movie.util.Response
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import javax.inject.Inject
 
-class GetMovieDetailUseCase @Inject constructor(
-    private val movieRepository: MovieRepository
+class GetMovieDetailUseCase(
+    val movieRepository: MovieRepository
 ) {
     operator fun invoke(movieId: Int) = flow {
         return@flow try {

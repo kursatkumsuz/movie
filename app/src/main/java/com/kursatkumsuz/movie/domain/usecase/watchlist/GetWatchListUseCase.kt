@@ -5,11 +5,10 @@ import com.kursatkumsuz.movie.domain.repository.FirebaseStorageRepository
 import com.kursatkumsuz.movie.util.Response
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
-import javax.inject.Inject
 
-class GetWatchListUseCase @Inject constructor(
-    private val firebaseStorageRepository: FirebaseStorageRepository,
-    private val authRepository: AuthenticationRepository
+class GetWatchListUseCase(
+    val firebaseStorageRepository: FirebaseStorageRepository,
+    val authRepository: AuthenticationRepository
 ) {
     operator fun invoke() = flow {
         try {

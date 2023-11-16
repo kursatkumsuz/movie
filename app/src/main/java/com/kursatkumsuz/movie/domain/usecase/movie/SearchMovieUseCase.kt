@@ -4,9 +4,8 @@ import androidx.paging.PagingData
 import com.kursatkumsuz.movie.data.model.search.SearchResult
 import com.kursatkumsuz.movie.domain.repository.movie.MovieRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class SearchMovieUseCase @Inject constructor(
+class SearchMovieUseCase(
     private val movieRepository: MovieRepository
 ) {
     suspend operator fun invoke(searchString: String): Flow<PagingData<SearchResult>> {

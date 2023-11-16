@@ -4,13 +4,12 @@ import com.kursatkumsuz.movie.domain.model.watchlist.WatchListMovie
 import com.kursatkumsuz.movie.domain.repository.AuthenticationRepository
 import com.kursatkumsuz.movie.domain.repository.FirebaseStorageRepository
 import com.kursatkumsuz.movie.util.Response
-import javax.inject.Inject
 
-class SaveMovieToWatchlistUseCase @Inject constructor(
-    private val firebaseStorageRepository: FirebaseStorageRepository,
-    private val authRepository: AuthenticationRepository
+class SaveMovieToWatchlistUseCase(
+    val firebaseStorageRepository: FirebaseStorageRepository,
+    val authRepository: AuthenticationRepository
 ) {
-    suspend  operator fun invoke(movie: WatchListMovie)  {
+    suspend operator fun invoke(movie: WatchListMovie) {
         try {
             Response.Loading
             val userUid = authRepository.getUserUid()

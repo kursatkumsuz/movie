@@ -4,11 +4,10 @@ import com.kursatkumsuz.movie.domain.repository.AuthenticationRepository
 import com.kursatkumsuz.movie.domain.repository.FirebaseStorageRepository
 import com.kursatkumsuz.movie.util.Response
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 
-class SaveUserUseCase @Inject constructor(
-    private val firebaseStorageRepository: FirebaseStorageRepository,
-    private val authenticationRepository: AuthenticationRepository
+class SaveUserUseCase(
+    val firebaseStorageRepository: FirebaseStorageRepository,
+    val authenticationRepository: AuthenticationRepository
 ) {
     operator fun invoke(name: String, email: String) = flow {
         try {
