@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.kursatkumsuz.movie.presentation.screens.search.component.SearchBar
 import com.kursatkumsuz.movie.presentation.screens.search.component.SearchList
+import com.kursatkumsuz.movie.util.Screen
 
 @Composable
 fun SearchScreen(navController: NavController) {
@@ -22,10 +23,11 @@ fun SearchScreen(navController: NavController) {
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        SearchBar {
-            viewModel.onSearchEvent(it)
-        }
-        SearchList(pagingItem = pagingItem, navController = navController)
+        SearchBar(onSearch = viewModel::onSearchEvent)
+
+        SearchList(
+            pagingItem = pagingItem,
+            onNavigateDetailScreen = { id -> navController.navigate(Screen.DetailScreen.route + "/${id}") })
     }
 }
 

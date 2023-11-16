@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SearchBar(
     hint: String = "",
-    onSearch: (String) -> Unit = {}
+    onSearch: (String) -> Unit
 ) {
     var text by remember {
         mutableStateOf("")
