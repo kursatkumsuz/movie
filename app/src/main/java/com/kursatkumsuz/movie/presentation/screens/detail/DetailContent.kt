@@ -32,7 +32,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.kursatkumsuz.movie.data.model.detail.Genre
 import com.kursatkumsuz.movie.domain.model.detail.CastUI
@@ -40,7 +39,6 @@ import com.kursatkumsuz.movie.domain.model.movie.detail.MovieDetailUI
 import com.kursatkumsuz.movie.presentation.component.PageLoader
 import com.kursatkumsuz.movie.presentation.component.detail.WatchButton
 import com.kursatkumsuz.movie.util.Constants.IMAGE_BASE_URL
-import com.kursatkumsuz.movie.util.Screen
 
 
 @Composable
@@ -48,7 +46,7 @@ fun DetailContent(
     movie: MovieDetailUI?,
     isLoading: Boolean,
     cast: List<CastUI>,
-    navController: NavController,
+    onBackClick: () -> Unit,
     onSaveWatchlistClick: () -> Unit,
     onWatchClick: () -> Unit
 ) {
@@ -64,7 +62,6 @@ fun DetailContent(
             Color(0xFF000000)
         )
     )
-    println("is Loading $isLoading")
     if (isLoading)
         PageLoader()
     else {
@@ -91,10 +88,7 @@ fun DetailContent(
                             .background(brush = gradient),
                     ) {
                         IconButton(
-                            onClick = {
-                                navController.popBackStack()
-                                navController.navigate(Screen.HomeScreen.route)
-                            }
+                            onClick = onBackClick
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
@@ -113,7 +107,7 @@ fun DetailContent(
                             )
                         }
                     }
-                    WatchButton { onWatchClick() }
+                    WatchButton(onWatchClick = onWatchClick)
                 }
             }
             item {
@@ -168,6 +162,7 @@ fun DetailContent(
             }
         }
     }
+
 }
 
 @Composable

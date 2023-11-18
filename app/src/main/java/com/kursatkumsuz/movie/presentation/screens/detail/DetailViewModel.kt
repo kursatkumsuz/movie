@@ -13,7 +13,6 @@ import com.kursatkumsuz.movie.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -62,17 +61,29 @@ class DetailViewModel @Inject constructor(
                     creditList.value = cast
                 }
 
-                is Response.Loading -> {}
-
-                is Response.Error -> {}
+                else -> {}
             }
         }.launchIn(viewModelScope)
     }
 
-    fun saveToWatchlist(movie: WatchListMovie) {
-        viewModelScope.launch {
-            useCases.saveMovieToWatchlistUseCase(movie = movie)
-        }
+    fun saveToWatchlist(movie: WatchListMovie, onSuccess: () -> Unit, onError: (String) -> Unit) {
+
+        useCases.saveMovieToWatchlistUseCase(movie = movie).onEach { response ->
+            when (response) {
+                is Response.Success -> {
+                    onSuccess()
+                }
+
+                is Response.Loading -> {
+
+                }
+
+                is Response.Error -> {
+                    onError(response.errorMessage)
+                }
+            }
+
+        }.launchIn(viewModelScope)
     }
 
 }
