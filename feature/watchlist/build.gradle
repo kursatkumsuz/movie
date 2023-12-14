@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.kursatkumsuz.watchlist'
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion ProjectConfig.kotlinCompilerExtensionVersion
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+}
+
+dependencies {
+
+    implementation libs.android.core.ktx
+    implementation libs.lifecycle.runtime.ktx
+    implementation libs.activity.compose
+    implementation libs.compose.ui
+    implementation libs.compose.ui.tooling.preview
+    implementation libs.compose.ui.util
+    implementation libs.material
+    implementation libs.compose.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    // Coroutines
+    implementation libs.coroutine.android
+    implementation libs.coroutine.play.services
+
+    //Firebase
+    implementation libs.firebase.firestore
+    implementation libs.firebase.auth
+
+    // Dependency Injection - Hilt
+    kapt libs.dagger.hilt.compiler
+    implementation libs.hilt.navigation.compose
+    implementation libs.hilt.android
+
+    // Coil
+    implementation libs.coil
+
+    // Animated Message Bar
+    implementation libs.kursat.animated.message.bar
+
+    implementation project(":core:util")
+    implementation project(":core:domain")
+
+
+}
+
+kapt {
+    correctErrorTypes true
+}

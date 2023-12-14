@@ -1,15 +1,22 @@
 package com.kursatkumsuz.movie.di
 
-import com.kursatkumsuz.movie.data.remote.MovieApiService
+import android.content.Context
+import com.kursatkumsuz.home.data.remote.ApiService
+import com.kursatkumsuz.detail.data.remote.DetailApiService
+import com.kursatkumsuz.search.data.remote.SearchApiService
 import com.kursatkumsuz.movie.util.Constants.BASE_URL
-import com.kursatkumsuz.movie.util.interceptors.ErrorInterceptor
+import com.kursatkumsuz.movie.util.interceptors.CacheInterceptor
+import com.kursatkumsuz.video.data.remote.VideoApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import javax.inject.Singleton
 
 @Module
@@ -18,21 +25,38 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideErrorInterceptor() = ErrorInterceptor()
+    fun provideCacheInterceptor() = CacheInterceptor()
+
     @Singleton
     @Provides
     fun provideOkHttp(
-        errorInterceptor: ErrorInterceptor
+        @ApplicationContext context: Context,
+        cacheInterceptor: CacheInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(errorInterceptor)
+            .cache(Cache(File(context.cacheDir, "http-cache"), 10L * 1024L * 1024L))
+            .addNetworkInterceptor(cacheInterceptor)
             .build()
     }
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): MovieApiService =
-        retrofit.create(MovieApiService::class.java)
+    fun provideVideoApiService(retrofit: Retrofit): VideoApiService =
+        retrofit.create(VideoApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideDetailApiService(retrofit: Retrofit): DetailApiService =
+        retrofit.create(DetailApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideSearchApiService(retrofit: Retrofit): SearchApiService =
+        retrofit.create(SearchApiService::class.java)
+    @Singleton
+    @Provides
+    fun provideApiService(retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
 
     @Singleton
     @Provides
@@ -42,4 +66,6 @@ object NetworkModule {
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+
 }

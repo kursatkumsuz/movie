@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.kursatkumsuz.onboarding'
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion ProjectConfig.kotlinCompilerExtensionVersion
+    }
+    buildFeatures {
+        compose true
+    }
+}
+
+dependencies {
+
+    implementation libs.android.core.ktx
+    implementation libs.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    implementation libs.compose.material
+    implementation libs.compose.ui
+    androidTestImplementation libs.androidx.test.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    // Dependency Injection - Hilt
+    kapt libs.dagger.hilt.compiler
+    implementation libs.hilt.navigation.compose
+    implementation libs.hilt.android
+
+    //Pager
+    implementation libs.accompanist.pager
+    implementation libs.accompanist.pager.indicator
+
+    implementation(project(":core:domain"))
+    implementation(project(":core:util"))
+
+}
+
+
+kapt {
+    correctErrorTypes true
+}

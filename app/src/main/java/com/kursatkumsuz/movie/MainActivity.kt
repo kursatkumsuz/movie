@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
@@ -16,20 +15,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.kursatkumsuz.movie.presentation.component.common.BottomNavigationBar
-import com.kursatkumsuz.movie.presentation.screens.navigation.NavGraph
-import com.kursatkumsuz.movie.ui.theme.MovieTheme
-import com.kursatkumsuz.movie.util.Screen
+import com.kursatkumsuz.movie.common.BottomNavigationBar
+import com.kursatkumsuz.movie.navigation.NavGraph
+import com.kursatkumsuz.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-    @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MovieTheme {
+            com.kursatkumsuz.ui.theme.MovieTheme {
                 val navController = rememberNavController()
                 val currentRoute =
                     navController.currentBackStackEntryAsState().value?.destination?.route
@@ -50,10 +48,10 @@ class MainActivity : ComponentActivity() {
                             BottomNavigationBar(
                                 onItemClick = {
                                     navController.navigate(it) {
-                                        launchSingleTop = true
                                         popUpTo(navController.graph.findStartDestination().id) {
                                             saveState = true
                                         }
+                                        launchSingleTop = true
                                         restoreState = true
                                     }
                                 })
@@ -71,6 +69,6 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    MovieTheme {
+    com.kursatkumsuz.ui.theme.MovieTheme {
     }
 }
