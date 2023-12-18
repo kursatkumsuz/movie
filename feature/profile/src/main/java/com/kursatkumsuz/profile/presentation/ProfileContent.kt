@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kursatkumsuz.domain.model.User
+import com.kursatkumsuz.profile.presentation.component.ProfileList
 
 @Composable
 fun ProfileContent(
@@ -57,12 +58,14 @@ fun ProfileContent(
             isPhotoUploading = isPhotoUploading
         )
 
-        user.name?.let { Text(text = it, color = Color.White) }
-        user.email?.let { Text(text = it, color = Color.White) }
+        user.name?.let { Text(text = it, color = MaterialTheme.colorScheme.onBackground) }
+        user.email?.let { Text(text = it, color = MaterialTheme.colorScheme.onBackground) }
         Spacer(modifier = Modifier.height(20.dp))
+        ProfileList()
+        Spacer(modifier = Modifier.height(30.dp))
         Button(
             modifier = Modifier.size(width = 250.dp, height = 40.dp),
-            onClick = { onSignOutClick() },
+            onClick = onSignOutClick,
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(color = 0xFF1B1B1A),
                 contentColor = Color.White
@@ -71,10 +74,9 @@ fun ProfileContent(
             Text(text = "Sign Out")
         }
         Spacer(modifier = Modifier.height(20.dp))
-        Text(text = "Ver. $versionName", color = Color.White)
+        Text(text = "Ver. $versionName", color = MaterialTheme.colorScheme.onBackground)
     }
 }
-
 
 @Composable
 fun ProfileImage(
