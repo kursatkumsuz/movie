@@ -1,9 +1,22 @@
 # Movie App
 
+This movie application provides users with an extensive collection of films, allowing them to explore detailed information about each movie. Users can search for specific films and delve into their details. Additionally, the app enables users to watch trailers and video clips related to each film. 
+
+## Overview
+- This project embraces a robust development approach by incorporating Multi-Module, MVVM (Model-View-ViewModel), and Clean Architecture principles.
 
 
-### Architecture
-- MVVM with Clean Architecture
+## Multi-Module
+- The modular structure enhances maintainability, scalability, and extensibility.
+- Each module can be developed independently, fostering code organization and minimizing dependencies.
+
+## Clean Architecture
+- Clean Architecture principles are applied to each feature module in this project.
+
+## MVVM (Model-View-ViewModel)
+- MVVM provides a clear separation between the user interface (View) and business logic (ViewModel), promoting code readability.
+
+
     
 ## Used in the project
 
@@ -11,19 +24,23 @@
 *  `Navigation Compose:`  Allows to easily build multi screen apps
  *  `Paging3`  Allows for the gradual loading of large datasets from the data source easily
  *  `Firebase`  for Authentication & Storage
-- Hilt
-- Coroutines
+ *  `Hilt` for dependency injection
+ *  `Coroutines` for asynchronous programming
 - Flow
 - OKHttp
 - Retrofit
 - DataStore
 - TMDB API
 
+## 📸 Video
+
+https://github.com/kursatkumsuz/movie/assets/59700175/967f123b-718e-4751-a7ff-d7abd25f56b3
 
 ## 📸 Screens
 
- <pre>
- 
+### Dark Mode
+<div>
+
   <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/c4ce2efe-392d-48d8-9336-2648edc645f0" width="20%">
   <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/2bd73cde-62fe-460f-9da0-a3b82bb78929" width="20%">
   <img align="left" src="https://github.com/kursatkumsuz/movie/assets/59700175/b46cca59-561e-439b-be14-b9fe9b6c26d7" width="20%">
