@@ -30,7 +30,6 @@ This movie application provides users with an extensive collection of films, all
 *  `OkHttp` for caching data.
 *  `Retrofit` A modern and type-safe HTTP client for communicating with RESTful web services.
 *  `DataStore` A modern data storage solution for storing and retrieving data, part of the Jetpack libraries.
-*  `DataStore` A modern data storage solution for storing and retrieving data, part of the Jetpack libraries.
 *  `TMDB API`  Popular and user editable database for movies and TV shows.
 
 ## 📸 Video
