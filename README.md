@@ -26,11 +26,12 @@ This movie application provides users with an extensive collection of films, all
  *  `Firebase`  for Authentication & Storage
  *  `Hilt` for dependency injection
  *  `Coroutines` for asynchronous programming
-- Flow
-- OKHttp
-- Retrofit
-- DataStore
-- TMDB API
+*  `Flow` An asynchronous data stream that sequentially emits values
+*  `OkHttp` for caching data.
+*  `Retrofit` A modern and type-safe HTTP client for communicating with RESTful web services.
+*  `DataStore` A modern data storage solution for storing and retrieving data, part of the Jetpack libraries.
+*  `DataStore` A modern data storage solution for storing and retrieving data, part of the Jetpack libraries.
+*  `TMDB API`  Popular and user editable database for movies and TV shows.
 
 ## 📸 Video
 
